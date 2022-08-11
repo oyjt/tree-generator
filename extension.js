@@ -5,12 +5,13 @@ const treePath = require('./tree');
  * 获取字符串的真实长度（字节长度）
  * @param {Object} str 字符串
  */
-function getTrueLength(str){
-    let len = str.length, truelen = 0;
-	for(let x = 0; x < len; x++){
-		if(str.charCodeAt(x) > 128){
+function getTrueLength(str) {
+	let len = str.length,
+		truelen = 0;
+	for (let x = 0; x < len; x++) {
+		if (str.charCodeAt(x) > 128) {
 			truelen += 2;
-		}else{
+		} else {
 			truelen += 1;
 		}
 	}
@@ -21,10 +22,10 @@ function getTrueLength(str){
  * 获取目录树
  * @param {Object} dir 
  */
-function getTree(dir, showIcon = false){
+function getTree(dir, showIcon = false) {
 	const treeArr = treePath(dir, showIcon);
-	const nums = Math.max(...treeArr.map(el=>getTrueLength(el.str)));
-	const tree = treeArr.map(el => el.str + ' '.repeat(nums-getTrueLength(el.str)+2)+'\n').join('');
+	const nums = Math.max(...treeArr.map(el => getTrueLength(el.str)));
+	const tree = treeArr.map(el => el.str + ' '.repeat(nums - getTrueLength(el.str) + 2) + '\n').join('');
 	return tree;
 }
 
@@ -40,7 +41,7 @@ function activate(context) {
 		hx.window.showInformationMessage('目录树已经复制到剪贴板上了~');
 	});
 	context.subscriptions.push(tree);
-	
+
 	// 生成目录树
 	let icon_tree = hx.commands.registerCommand('tree.generator.icon', (uri) => {
 		const str = getTree(uri.fsPath, true);
