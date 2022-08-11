@@ -1,17 +1,26 @@
 # tree-generator
 这是一个可以根据指定目录生成目录树的插件，形如
 ```
-  ├─ css              // css
-  │  ├─ common.css    // common.css
-  │  └─ details.css   
-  ├─ images           
-  │  └─ logo.png      //
-  └─ js               
-     ├─ lib           
-     │  └─ jquery.js  //
-     ├─ common.js     
-     ├─ home.js       
-     └─ pages.js      //
+fe-standard           
+├─ docs             // 文档
+│  └─ index.md      // 首页
+├─ deploy.sh        
+├─ package.json     
+├─ README.md        
+├─ yarn.lock        
+└─ 自用前端规范.md  
+```
+
+* 带图标目录 *
+```
+📦fe-standard           
+├─ 📂docs             
+│  └─ 📜index.md     
+├─ 📜deploy.sh        
+├─ 📜package.json     
+├─ 📜README.md        
+├─ 📜yarn.lock        
+└─ 📜自用前端规范.md  
 ```
 
 # 功能
