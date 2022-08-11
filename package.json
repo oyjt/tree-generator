@@ -13,17 +13,27 @@
 	],
 	"main": "./extension",
 	"activationEvents": [
-		"onCommand:extension.generator"
+		"onCommand:tree.generator",
+		"onCommand:tree.generator.icon"
 	],
 	"contributes": {
 		"commands": [{
-			"command": "extension.generator",
+			"command": "tree.generator",
 			"title": "生成目录树"
+		}, {
+			"command": "tree.generator.icon",
+			"title": "生成目录树（带图标）"
 		}],
 		"menus": {
 			"explorer/context": [{
-					"command": "extension.generator",
+					"command": "tree.generator",
 					"title": "生成目录树",
+					"group": "openInExplorer",
+					"when": "explorerResourceIsFolder"
+				},
+				{
+					"command": "tree.generator.icon",
+					"title": "生成目录树（带图标）",
 					"group": "openInExplorer",
 					"when": "explorerResourceIsFolder"
 				}

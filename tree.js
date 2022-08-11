@@ -2,10 +2,10 @@ const fs = require("fs");
 const path = require("path");
 const ignore = ['node_modules','uni_modules','unpackage'];
 
-const treePath = function(dir) {
+const treePath = function(dir, showIcon = false) {
     const treeArr = [{
         name: path.basename(dir),
-        str: path.basename(dir)
+        str: `${showIcon?'📦':''}${path.basename(dir)}`
     }];
     
     const render = function(name,isLast,deep){
@@ -39,12 +39,14 @@ const treePath = function(dir) {
         direct.forEach(function(el,i){
             const dir = path.join(target,el);
             const isLast = (i === direct.length -1) && (file.length === 0);
-            treeArr.push(render(el,isLast,deep));
+			const name = `${showIcon?'📂':''}${el}`;
+            treeArr.push(render(name,isLast,deep));
             tree(dir,[...deep,!isLast]);
         })
         file.forEach(function(el,i){
             const isLast = i === file.length -1;
-            treeArr.push(render(el,isLast,deep));
+			const name = `${showIcon?'📜':''}${el}`;
+            treeArr.push(render(name,isLast,deep));
         })
     }
     
