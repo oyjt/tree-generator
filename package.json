@@ -1,0 +1,37 @@
+{
+	"id": "tree-generator",
+	"name": "tree-generator",
+	"description": "这是一个可以方便快速生成文件目录树的插件",
+	"displayName": "tree-generator 生成目录树",
+	"version": "1.0.0",
+	"publisher": "江阳小道",
+	"engines": {
+		"HBuilderX": "^2.7.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"main": "./extension",
+	"activationEvents": [
+		"onCommand:extension.generator"
+	],
+	"contributes": {
+		"commands": [{
+			"command": "extension.generator",
+			"title": "生成目录树"
+		}],
+		"menus": {
+			"explorer/context": [{
+					"command": "extension.generator",
+					"title": "生成目录树",
+					"group": "openInExplorer",
+					"when": "explorerResourceIsFolder"
+				}
+			]
+		}
+	},
+	"extensionDependencies": [
+		"plugin-manager"
+	],
+	"dependencies": {}
+}
