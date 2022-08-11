@@ -3,7 +3,7 @@
 	"name": "tree-generator",
 	"description": "这是一个可以方便快速生成文件目录树的插件",
 	"displayName": "tree-generator 生成目录树",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"publisher": "江阳小道",
 	"engines": {
 		"HBuilderX": "^2.7.0"
