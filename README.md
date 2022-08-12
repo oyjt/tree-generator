@@ -1,7 +1,7 @@
 # tree-generator
 这是一个可以根据指定目录生成目录树的插件，形如
 ```
-fe-standard           
+fe-standard         
 ├─ docs             // 文档
 │  └─ index.md      // 首页
 ├─ deploy.sh        
@@ -13,7 +13,7 @@ fe-standard
 
 **带图标目录**
 ```
-📦fe-standard           
+📦fe-standard         
 ├─ 📂docs             // 文档
 │  └─ 📜index.md      // 首页
 ├─ 📜deploy.sh        

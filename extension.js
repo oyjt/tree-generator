@@ -2,20 +2,14 @@ const hx = require("hbuilderx");
 const treePath = require('./tree');
 
 /**
- * 获取字符串的真实长度（字节长度）
+ * 获取字符串的真实长度（中文占两个字符）
  * @param {Object} str 字符串
  */
 function getTrueLength(str) {
-	let len = str.length,
-		truelen = 0;
-	for (let x = 0; x < len; x++) {
-		if (str.charCodeAt(x) > 128) {
-			truelen += 2;
-		} else {
-			truelen += 1;
-		}
-	}
-	return truelen;
+	let reg = /[\u4e00-\u9fa5]/g,
+		chinese = str.match(reg);
+	// 中文占两个字符
+	return chinese ? str.length + chinese.length : str.length;
 }
 
 /**
