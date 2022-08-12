@@ -5,12 +5,12 @@ const ignore = ['node_modules', 'uni_modules', 'unpackage'];
 const treePath = function(dir, showIcon = false) {
 	const treeArr = [{
 		name: path.basename(dir),
-		str: `${showIcon?'ðŸ“¦':''}${path.basename(dir)}`
+		str: `${showIcon?'':''}${path.basename(dir)}`
 	}];
 
 	const render = function(name, isLast, deep) {
-		const line = deep.map(el => `${el?'â”‚':' '}  `).join('');
-		const text = `${line}${isLast?'â””â”€':'â”œâ”€'} ${name}`;
+		const line = deep.map(el => `${el?'©¦':' '}  `).join('');
+		const text = `${line}${isLast?'©¸©¤':'©À©¤'} ${name}`;
 		return {
 			name: name,
 			str: text
@@ -39,13 +39,13 @@ const treePath = function(dir, showIcon = false) {
 		direct.forEach(function(el, i) {
 			const dir = path.join(target, el);
 			const isLast = (i === direct.length - 1) && (file.length === 0);
-			const name = `${showIcon?'ðŸ“‚':''}${el}`;
+			const name = `${showIcon?'':''}${el}`;
 			treeArr.push(render(name, isLast, deep));
 			tree(dir, [...deep, !isLast]);
 		})
 		file.forEach(function(el, i) {
 			const isLast = i === file.length - 1;
-			const name = `${showIcon?'ðŸ“œ':''}${el}`;
+			const name = `${showIcon?'':''}${el}`;
 			treeArr.push(render(name, isLast, deep));
 		})
 	}
