@@ -3,7 +3,7 @@
 	"name": "tree-generator",
 	"description": "这是一个可以方便快速生成文件目录树的插件",
 	"displayName": "tree-generator 生成目录树",
-	"version": "1.1.3",
+	"version": "1.2.0",
 	"publisher": "江阳小道",
 	"engines": {
 		"HBuilderX": "^2.7.0"
@@ -13,29 +13,90 @@
 	],
 	"main": "./extension",
 	"activationEvents": [
-		"onCommand:tree.generator",
-		"onCommand:tree.generator.icon"
+		"onCommand:tree.generator.text",
+		"onCommand:tree.generator.text1",
+		"onCommand:tree.generator.text2",
+		"onCommand:tree.generator.text3",
+		"onCommand:tree.generator.icon",
+		"onCommand:tree.generator.icon1",
+		"onCommand:tree.generator.icon2",
+		"onCommand:tree.generator.icon3"
 	],
 	"contributes": {
 		"commands": [{
-			"command": "tree.generator",
-			"title": "生成目录树"
+			"command": "tree.generator.text",
+			"title": "生成目录树（全部目录）"
+		}, {
+			"command": "tree.generator.text1",
+			"title": "生成目录树（一级目录）"
+		}, {
+			"command": "tree.generator.text2",
+			"title": "生成目录树（二级目录）"
+		}, {
+			"command": "tree.generator.text3",
+			"title": "生成目录树（三级目录）"
 		}, {
 			"command": "tree.generator.icon",
-			"title": "生成目录树（带图标）"
+			"title": "生成目录树（带图标全部目录）"
+		}, {
+			"command": "tree.generator.icon1",
+			"title": "生成目录树（带图标一级目录）"
+		}, {
+			"command": "tree.generator.icon2",
+			"title": "生成目录树（带图标二级目录）"
+		}, {
+			"command": "tree.generator.icon3",
+			"title": "生成目录树（带图标三级目录）"
 		}],
 		"menus": {
 			"explorer/context": [{
-					"command": "tree.generator",
+					"id": "treeGen",
 					"title": "生成目录树",
 					"group": "openInExplorer",
 					"when": "explorerResourceIsFolder"
 				},
 				{
+					"command": "tree.generator.text",
+					"title": "全部目录",
+					"group": "treeGen@1"
+				},
+				{
+					"command": "tree.generator.text1",
+					"title": "一级目录",
+					"group": "treeGen@2"
+				},
+				{
+					"command": "tree.generator.text2",
+					"title": "二级目录",
+					"group": "treeGen@3"
+				},
+				{
+					"command": "tree.generator.text3",
+					"title": "三级目录",
+					"group": "treeGen@4"
+				},
+				{
+					"group": "treeGen@5"
+				},
+				{
 					"command": "tree.generator.icon",
-					"title": "生成目录树（带图标）",
-					"group": "openInExplorer",
-					"when": "explorerResourceIsFolder"
+					"title": "全部目录（带图标）",
+					"group": "treeGen@6"
+				},
+				{
+					"command": "tree.generator.icon1",
+					"title": "一级目录（带图标）",
+					"group": "treeGen@7"
+				},
+				{
+					"command": "tree.generator.icon2",
+					"title": "二级目录（带图标）",
+					"group": "treeGen@8"
+				},
+				{
+					"command": "tree.generator.icon3",
+					"title": "三级目录（带图标）",
+					"group": "treeGen@9"
 				}
 			]
 		}

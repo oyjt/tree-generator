@@ -27,8 +27,9 @@ fe-standard
 - 美观。连接线完美展示，注释位对齐
 - 方便。只需右键点击生成即可复制到剪贴板上
 - 快速。原生实现，不依赖任何第三方，性能高
+- 多级目录。支持可选目录层级
 
-> 已排除`node_modules`、`uni_modules`、`unpackage`文件夹和以.开头的文件或文件夹
+> 已排除`node_modules`、`uni_modules`、`unpackage`、`dist`文件夹和以.开头的文件或文件夹
 
 # 使用说明
 1. 在文件夹目录右击

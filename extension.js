@@ -16,11 +16,17 @@ function getTrueLength(str) {
  * 获取目录树
  * @param {Object} dir 
  */
-function getTree(dir, showIcon = false) {
+function getTree(dir, showIcon = false, maxLevel = Number.POSITIVE_INFINITY) {
 	const treeArr = treePath(dir, showIcon);
 	const nums = Math.max(...treeArr.map(el => getTrueLength(el.str)));
 	const tree = treeArr.map(el => el.str + ' '.repeat(nums - getTrueLength(el.str) + 2) + '\n').join('');
 	return tree;
+}
+
+function handleCommand(uri, showIcon = false, maxLevel = Number.POSITIVE_INFINITY) {
+	const str = getTree(uri.fsPath);
+	hx.env.clipboard.writeText(str);
+	hx.window.showInformationMessage('目录树已经复制到剪贴板上了~');
 }
 
 /**
@@ -29,20 +35,37 @@ function getTree(dir, showIcon = false) {
  */
 function activate(context) {
 	// 生成目录树
-	let tree = hx.commands.registerCommand('tree.generator', (uri) => {
-		const str = getTree(uri.fsPath);
-		hx.env.clipboard.writeText(str);
-		hx.window.showInformationMessage('目录树已经复制到剪贴板上了~');
+	const textTree = hx.commands.registerCommand('tree.generator.text', (uri) => {
+		handleCommand(uri)
 	});
-	context.subscriptions.push(tree);
+	const textTree1 = hx.commands.registerCommand('tree.generator.text1', (uri) => {
+		handleCommand(uri, false, 1)
+	});
+	const textTree2 = hx.commands.registerCommand('tree.generator.text2', (uri) => {
+		handleCommand(uri, false, 2)
+	});
+	const textTree3 = hx.commands.registerCommand('tree.generator.text3', (uri) => {
+		handleCommand(uri, false, 3)
+	});
 
-	// 生成目录树
-	let icon_tree = hx.commands.registerCommand('tree.generator.icon', (uri) => {
-		const str = getTree(uri.fsPath, true);
-		hx.env.clipboard.writeText(str);
-		hx.window.showInformationMessage('目录树已经复制到剪贴板上了~');
+	// 生成目录树（带图标）
+	const iconTree = hx.commands.registerCommand('tree.generator.icon', (uri) => {
+		handleCommand(uri, true)
 	});
-	context.subscriptions.push(icon_tree);
+	const iconTree1 = hx.commands.registerCommand('tree.generator.icon1', (uri) => {
+		handleCommand(uri, true, 1)
+	});
+	const iconTree2 = hx.commands.registerCommand('tree.generator.icon2', (uri) => {
+		handleCommand(uri, true, 2)
+	});
+	const iconTree3 = hx.commands.registerCommand('tree.generator.icon3', (uri) => {
+		handleCommand(uri, true, 3)
+	});
+	
+	const commandArr = [textTree, textTree1, textTree2, textTree3, iconTree, iconTree1, iconTree2, iconTree3];
+	for (let i = 0; i < commandArr.length; i++) {
+		context.subscriptions.push(commandArr[i]);
+	}
 }
 //该方法将在插件禁用的时候调用（目前是在插件卸载的时候触发）
 function deactivate() {
