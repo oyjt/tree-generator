@@ -1,5 +1,6 @@
 const hx = require("hbuilderx");
 const treePath = require('./tree');
+const readDir = require('./tree2');
 
 /**
  * 获取字符串的真实长度（中文占两个字符）
@@ -23,8 +24,30 @@ function getTree(dir, showIcon = false, maxLevel = Number.POSITIVE_INFINITY) {
 	return tree;
 }
 
+// function readDir(path, level, maxLevel) {
+//   let files = fs.readdirSync(path);
+//   let tree = '';
+//   level = level || 0;
+//   maxLevel = maxLevel || Number.POSITIVE_INFINITY;
+
+//   for (let i = 0; i < files.length; i++) {
+// 	let file = files[i];
+// 	let stats = fs.statSync(path + '/' + file);
+
+// 	if (stats.isDirectory() && level < maxLevel) {
+// 	  tree += '\t'.repeat(level) + '|-- ' + file + '\n';
+// 	  tree += readDir(path + '/' + file, level + 1, maxLevel);
+// 	} else {
+// 	  tree += '\t'.repeat(level) + '|-- ' + file + '\n';
+// 	}
+//   }
+
+//   return tree;
+// }
+
 function handleCommand(uri, showIcon = false, maxLevel = Number.POSITIVE_INFINITY) {
-	const str = getTree(uri.fsPath);
+	// const str = getTree(uri.fsPath);
+	const str = readDir(uri.fsPath, maxLevel);
 	hx.env.clipboard.writeText(str);
 	hx.window.showInformationMessage('目录树已经复制到剪贴板上了~');
 }

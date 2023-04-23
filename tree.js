@@ -16,7 +16,7 @@ const treePath = function(dir, showIcon = false, maxLevel = Number.POSITIVE_INFI
 			str: text
 		};
 	}
-
+	
 	const tree = function(target, deep = []) {
 		const child = fs.readdirSync(target).filter(el => !el.startsWith('.'));
 		const direct = [];
