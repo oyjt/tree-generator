@@ -3,6 +3,7 @@ const path = require("path");
 const ignore = ['node_modules', 'uni_modules', 'unpackage', 'dist'];
 
 const treePath = function(dir, showIcon = false, maxLevel = Number.POSITIVE_INFINITY) {
+	let level = 0;
 	const treeArr = [{
 		name: path.basename(dir),
 		str: `${showIcon?'\u{1f4e6}':''}${path.basename(dir)}`
@@ -16,8 +17,11 @@ const treePath = function(dir, showIcon = false, maxLevel = Number.POSITIVE_INFI
 			str: text
 		};
 	}
-	
-	const tree = function(target, deep = []) {
+
+	const tree = function(target, deep = [], level = 0) {
+		// 超出指定层级则退出
+		if (level > maxLevel-1) return;
+		level ++;
 		const child = fs.readdirSync(target).filter(el => !el.startsWith('.'));
 		const direct = [];
 		const file = [];
@@ -34,14 +38,13 @@ const treePath = function(dir, showIcon = false, maxLevel = Number.POSITIVE_INFI
 					direct.push(el);
 				}
 			}
-
 		})
 		direct.forEach(function(el, i) {
 			const dir = path.join(target, el);
-			const isLast = (i === direct.length - 1) && (file.length === 0);
+			const isLast = ((i === direct.length - 1) && (file.length === 0));
 			const name = `${showIcon?'\u{1f4c2}':''}${el}`;
 			treeArr.push(render(name, isLast, deep));
-			tree(dir, [...deep, !isLast]);
+			tree(dir, [...deep, !isLast], level);
 		})
 		file.forEach(function(el, i) {
 			const isLast = i === file.length - 1;
